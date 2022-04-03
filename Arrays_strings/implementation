@@ -1,0 +1,274 @@
+# BASIC OPERATIONS.
+array = [23, 56, 22, 12, 89, 40]
+
+array.insert(2, 44)
+
+print(array)
+
+array.pop(4)
+print(array)
+
+array.append(69)
+print(array)
+
+
+for i in array:
+    print(i)
+
+#####    
+    
+monthly_expense = [2200, 2350, 2600, 2130, 2190]
+
+feb_extra = monthly_expense[1] - monthly_expense[0]
+print(feb_extra)
+quarter = monthly_expense[0] + monthly_expense[1] + monthly_expense[1]
+print(quarter)
+for i in monthly_expense:
+  if i == 2000:
+    print(True)
+
+monthly_expense.append(1980)
+print(monthly_expense)
+
+monthly_expense[3] = monthly_expense[3] + 200
+
+print(monthly_expense)
+
+#Create a list of all odd numbers between 1 and a max number. 
+#Max number is something you need to take from a user using input() function
+user = int(input("Input maximum value: "))
+list = []
+for i in range(user):
+  if i%2 != 0:
+    list.append(i)
+    i += 1
+
+print(list)
+
+
+######
+
+
+"""You have a list of your favourite marvel super heros.
+1. Length of the list
+2. Add 'black panther' at the end of this list
+3. You realize that you need to add 'black panther' after 'hulk',
+   so remove it from the list first and then add it after 'hulk'
+4. Now you don't like thor and hulk because they get angry easily :)
+   So you want to remove thor and hulk from list and replace them with doctor strange (because he is cool).
+   Do that with one line of code.
+5. Sort the heros list in alphabetical order (Hint. Use dir() functions to list down all functions available in list)
+"""
+
+heros=['Spiderman','Thor','Hulk','Ironman','Captain america']
+
+print(len(heros))
+heros.append('black panther')
+print(heros)
+
+#print(dir())
+heros.pop(-1)
+heros.insert(3, 'black panther')
+print(heros)
+
+heros[1:3] = ['Doctor Strange']
+print(heros)
+
+heros.sort()
+print(heros)
+
+######
+#GoL Clinics DSA Arrays Assignment.
+
+# Reverse array in place function.
+A = [10, 5, 6, 9]
+
+def reverseArray(A):
+  start_index = 0
+  end_index = len(A) - 1
+
+  while start_index < end_index:
+    A[start_index], A[end_index] = A[end_index], A[start_index]
+    start_index += 1
+    end_index -= 1
+  return A
+
+print(reverseArray(A))
+
+
+######
+
+#reverse sentense in place
+A = ['t','h','i','s',' ','i','s',' ','g','o','o','d']
+
+def reverseSentence(A):
+	for i in range(len(A)):
+		if A[i].isspace() == False:
+			A = ''.join(A)
+		elif A[i].isspace() == True:
+			A = A.replace(' ', ',')
+	 
+	A = list(A.split(','))	
+	
+	start_index = 0
+	end_index = len(A) - 1
+	while start_index < end_index:
+		A[start_index], A[end_index] = A[end_index], A[start_index]
+		start_index += 1
+		end_index -= 1
+		#print(A)
+	A = ''.join(A)
+	#print(A)
+	A = list(A)
+	print(A)
+ 
+reverseSentence(A)
+
+#######
+
+arr = [7, 1, 3, 2, 4, 5, 6]
+
+#sort array by swapping two elements.
+
+"""
+def minimumSwaps(arr):
+  start = 0
+  second =  1
+  swaps = 0
+
+  while second < len(arr):
+    if arr[start] > arr[second]:
+      arr[start], arr[second] = arr[second], arr[start]
+      start += 1
+      second += 1
+      swaps += 1
+  
+  return swaps
+
+
+minimumSwaps(arr)
+"""
+
+def minimumSwaps(arr):
+  swaps = 0
+  tmp = {}
+
+  for i, val in enumerate(arr):
+    tmp[val] = i
+
+    #print(i, val)
+
+  for i in range(len(arr)):
+    if arr[i] != i + 1:
+      swaps += 1
+      t = arr[i]
+      arr[i] = i + 1
+      arr[tmp[i+1]] = t
+
+      tmp[t] = tmp[i + 1]
+
+  return swaps
+
+minimumSwaps(arr)
+
+########
+
+names = {
+    "Mavine",
+    "Sam",
+    "Rakiro"
+}
+
+name = enumerate(names)
+
+print(list(name))
+
+for count, value in enumerate(names):
+  print(count)
+  
+  ######
+  
+  #Remove Elements.
+"""
+def removeElement(nums, val):
+  k = 0
+  starting_index = 0
+  ending_index = len(nums) - 1
+  while starting_index < ending_index:
+    if nums[starting_index] == val:
+      nums[starting_index], nums[ending_index] = nums[ending_index], nums[starting_index]
+    elif starting_index != val:
+      nums[starting_index], nums[ending_index] = nums[starting_index], nums[ending_index]
+      
+    starting_index += 1
+    ending_index -= 1
+    k += 1
+
+  print(nums)      
+  print(k)
+  
+    
+nums = [3,2,2,3] 
+val = 3
+    
+removeElement(nums, val)
+"""
+
+def removeElement(nums, val):
+  k = 0
+  starting_index = 0
+  ending_index = len(nums) - 1
+        
+  while starting_index < len(nums):
+    if nums[starting_index] == val:
+    #nums.pop(starting_index)
+      del nums[starting_index]
+      starting_index -= 1
+    starting_index += 1
+    #ending_index -= 1
+    k += 1
+
+    print(nums)
+    print(k)
+
+removeElement([0,1,2,2,3,0,4,2], 2)
+
+######
+
+class Solution:
+    def removeElement(self, nums, val):
+        self.nums = nums
+        self.val = val
+        
+        k = 0
+        starting_index = 0
+        ending_index = len(nums) - 1
+        
+        while starting_index < ending_index:
+            if nums[starting_index] == val:
+                nums.pop(starting_index)
+                
+            starting_index += 1
+            #ending_index -= 1
+            k += 1
+
+        return num     
+        
+        """
+            if nums[starting_index] == val:
+                nums[starting_index], nums[ending_index] = nums[ending_index], nums[starting_index]
+            else:
+                nums[starting_index], nums[ending_index] = nums[starting_index], nums[ending_index]
+            
+            starting_index += 1
+            ending_index -= 1
+            k += 1
+        
+        print(k)
+        """
+num = [3, 2, 3]
+val = 3
+num = Solution()
+
+print(num)
+             
